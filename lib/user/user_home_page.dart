@@ -7,6 +7,7 @@ import 'package:notes_app/admin/see_all_voters.dart';
 import 'package:notes_app/config/color.dart';
 import 'package:notes_app/helper/firebaseaut.dart';
 import 'package:notes_app/user/candidate.dart';
+import 'package:notes_app/user/history.dart';
 import 'package:notes_app/user/signup.dart';
 
 import 'package:notes_app/user/vote_now.dart';
@@ -73,19 +74,23 @@ class UserHomaPage extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const VoteNow()));
               },
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 10,
-                          spreadRadius: 5)
-                    ]),
-                height: 20,
-                // color: Colors.red,
-                child: Center(child: Text('Todays Appoinment')),
+              child: InkWell(
+                onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => BookingHistory())),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 10,
+                            spreadRadius: 5)
+                      ]),
+                  height: 20,
+                  // color: Colors.red,
+                  child: Center(child: Text(' Appoinments')),
+                ),
               ),
             ),
             // InkWell(
