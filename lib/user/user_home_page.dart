@@ -6,14 +6,34 @@ import 'package:notes_app/admin/result.dart';
 import 'package:notes_app/admin/see_all_voters.dart';
 import 'package:notes_app/config/color.dart';
 import 'package:notes_app/helper/firebaseaut.dart';
+import 'package:notes_app/helper/firestore.dart';
+import 'package:notes_app/helper/location.dart';
 import 'package:notes_app/user/candidate.dart';
 import 'package:notes_app/user/history.dart';
 import 'package:notes_app/user/signup.dart';
 
 import 'package:notes_app/user/vote_now.dart';
 
-class UserHomaPage extends StatelessWidget {
+class UserHomaPage extends StatefulWidget {
   const UserHomaPage({super.key});
+
+  @override
+  State<UserHomaPage> createState() => _UserHomaPageState();
+}
+
+class _UserHomaPageState extends State<UserHomaPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _updateDoctorLocation();
+  }
+
+  Future<void> _updateDoctorLocation() async {
+    final _locationService = LocationServices();
+    _locationService.getLocation();
+  }
 
   @override
   Widget build(BuildContext context) {
