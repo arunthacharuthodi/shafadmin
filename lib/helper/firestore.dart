@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/helper/firebaseaut.dart';
 
@@ -6,6 +8,15 @@ class FirestoreHelper {
   Helper _helper = Helper();
   CollectionReference _collectionReference =
       FirebaseFirestore.instance.collection('user');
+  String uid = FirebaseAuth.instance.currentUser!.uid;
+
+  Future<void> updateLocation(
+      {required double latitude, required double longitude}) async {
+    await _collectionReference.doc(uid).update({
+      'location': GeoPoint(latitude, longitude)
+    }).whenComplete(() => print(
+        "location - updated longitude: $longitude ---- latitude: $latitude"));
+  }
 
   Future<void> updateprofile(
       {required String email,
